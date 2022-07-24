@@ -87,10 +87,23 @@ class DoublyLinkedList {
       return this.head;
     }
 
-    let foundNode = this.head;
+    // Check if index is nearer on the head or tail
+    const mid = Math.floor(this.length / 2);
 
-    for (let i = 0; i < index; i++) {
-      foundNode = foundNode.next;
+    let foundNode;
+
+    if (index > mid) {
+      foundNode = this.tail;
+
+      for (let i = this.length; i > index; i--) {
+        foundNode = foundNode.previous;
+      }
+    } else {
+      foundNode = this.head;
+
+      for (let i = 0; i < index; i++) {
+        foundNode = foundNode.next;
+      }
     }
 
     return foundNode;
@@ -168,5 +181,5 @@ const list = new DoublyLinkedList();
 list.push('hello');
 list.push('hi');
 list.push('there');
-list.reverse();
+list.insert('push', 1);
 console.log(list);
