@@ -53,12 +53,32 @@ class BinarySearchTree {
 
     return false;
   }
+
+  breadthFirstSearch() {
+    const visited = [];
+    const queue = [];
+
+    queue.push(this.root);
+
+    while (queue.length !== 0) {
+      const node = queue.shift();
+
+      if (node !== null) {
+        visited.push(node.value);
+        queue.push(node.left);
+        queue.push(node.right);
+      }
+    }
+
+    return visited;
+  }
 }
 
 let tree = new BinarySearchTree();
 tree.insert(10);
 tree.insert(5);
-tree.insert(11);
 tree.insert(15);
-tree.insert(12);
-console.log(tree.contains(20));
+tree.insert(18);
+tree.insert(6);
+tree.insert(4);
+console.log(tree.breadthFirstSearch());
