@@ -20,8 +20,8 @@ class DoublyLinkedList {
       this.head = node;
       this.tail = this.head;
     } else {
-      node.previous = this.tail;
       this.tail.next = node;
+      node.previous = this.tail;
       this.tail = node;
     }
 
@@ -36,18 +36,14 @@ class DoublyLinkedList {
     const popped = this.tail;
 
     if (this.length === 1) {
-      this.pop();
+      this.head = null;
+      this.tail = null;
     } else {
-      let current = this.head.next;
-
-      while (current.next !== this.tail) {
-        current = current.next;
-      }
-
-      this.tail = current;
+      this.tail = this.tail.previous;
       this.tail.next = null;
-      this.length--;
     }
+
+    this.length--;
 
     return popped;
   }
@@ -64,6 +60,8 @@ class DoublyLinkedList {
 
     if (this.length === 0) {
       this.tail = null;
+    } else {
+      this.head.previous = null;
     }
 
     return currentHead;
@@ -76,6 +74,7 @@ class DoublyLinkedList {
       this.push(node);
     } else {
       node.next = this.head;
+      this.head.previous = node;
       this.head = node;
       this.length++;
     }
@@ -121,6 +120,7 @@ class DoublyLinkedList {
     const node = new Node(value);
     const previous = this.get(index - 1);
     const next = previous.next;
+    node.previous = previous;
     previous.next = node;
     node.next = next;
     this.length++;
@@ -137,8 +137,9 @@ class DoublyLinkedList {
       return true;
     }
 
-    const previous = this.get(index - 1);
     const node = this.get(index);
+    const previous = node.previous;
+    node.next.previous = previous;
     previous.next = node.next;
     this.length--;
   }
@@ -152,13 +153,12 @@ class DoublyLinkedList {
     this.head = this.tail;
     this.tail = current;
 
-    let previous = null;
     let next = null;
 
     for (let i = 0; i < this.length; i++) {
       next = current.next;
-      current.next = previous;
-      previous = current;
+      current.next = current.previous;
+      current.previous = next;
       current = next;
     }
   }
@@ -168,4 +168,5 @@ const list = new DoublyLinkedList();
 list.push('hello');
 list.push('hi');
 list.push('there');
+list.reverse();
 console.log(list);

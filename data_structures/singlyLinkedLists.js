@@ -34,7 +34,8 @@ class SinglyLinkedList {
     const popped = this.tail;
 
     if (this.length === 1) {
-      this.pop();
+      this.head = null;
+      this.tail = null;
     } else {
       let current = this.head.next;
 
@@ -44,8 +45,9 @@ class SinglyLinkedList {
 
       this.tail = current;
       this.tail.next = null;
-      this.length--;
     }
+
+    this.length--;
 
     return popped;
   }
