@@ -23,8 +23,9 @@ class MaxBinaryHeap {
 
   extractMax() {
     const max = this.values[0];
-    if (this.values.length > 1) {
-      this.values[0] = this.values.pop();
+    const end = this.values.pop();
+    if (this.values.length > 0) {
+      this.values[0] = end;
       this.sinkDown();
     }
     return max;
