@@ -3,6 +3,7 @@ class MaxBinaryHeap {
     this.values = [];
   }
 
+  // O(log n)
   insert(value) {
     this.values.push(value);
     this.bubbleUp();
@@ -21,6 +22,7 @@ class MaxBinaryHeap {
     }
   }
 
+  // O(log n)
   extractMax() {
     const max = this.values[0];
     const end = this.values.pop();

@@ -11,6 +11,7 @@ class PriorityQueue {
     this.values = [];
   }
 
+  // O(log n)
   enqueue(value, priority) {
     const node = new Node(value, priority);
     this.values.push(node);
@@ -35,6 +36,7 @@ class PriorityQueue {
     }
   }
 
+  // O(log n)
   dequeue() {
     const min = this.values[0];
     const end = this.values.pop();
