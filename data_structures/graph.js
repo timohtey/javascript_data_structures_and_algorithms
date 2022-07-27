@@ -77,14 +77,35 @@ class Graph {
     while (stack.length > 0) {
       const vertex = stack.pop();
 
-      if (!visited[vertex]) {
-        results.push(vertex);
-        visited[vertex] = true;
+      results.push(vertex);
+      visited[vertex] = true;
 
-        for (const edge of this.adjacenyList[vertex]) {
-          if (!visited[edge]) {
-            stack.push(edge);
-          }
+      for (const edge of this.adjacenyList[vertex]) {
+        if (!visited[edge]) {
+          stack.push(edge);
+        }
+      }
+    }
+
+    return results;
+  }
+
+  bfsIterative(start) {
+    const visited = {};
+    const queue = [];
+    const results = [];
+
+    queue.push(start);
+
+    while (queue.length > 0) {
+      const vertex = queue.shift();
+
+      results.push(vertex);
+      visited[vertex] = true;
+
+      for (const edge of this.adjacenyList[vertex]) {
+        if (!visited[edge]) {
+          queue.push(edge);
         }
       }
     }
@@ -100,10 +121,13 @@ graph.addVertex('Jeddah');
 graph.addVertex('Paris');
 graph.addVertex('Dallas');
 graph.addVertex('Cairo');
+graph.addVertex('Riyadh');
 graph.addEdge('Manila', 'Tokyo');
 graph.addEdge('Manila', 'Jeddah');
 graph.addEdge('Tokyo', 'Paris');
 graph.addEdge('Tokyo', 'Dallas');
-graph.addEdge('Tokyo', 'Cairo');
+graph.addEdge('Jeddah', 'Cairo');
+graph.addEdge('Dallas', 'Riyadh');
 console.log(graph.dfsRecursive('Manila'));
 console.log(graph.dfsIterative('Manila'));
+console.log(graph.bfsIterative('Manila'));
