@@ -6,7 +6,7 @@ class Node {
 }
 
 // min binary heap
-class PriorityQueue {
+export class PriorityQueue {
   constructor() {
     this.values = [];
   }
@@ -100,8 +100,3 @@ priorityQueue.enqueue('fracture', 1);
 priorityQueue.enqueue('migraine2', 6);
 priorityQueue.enqueue('cough', 4);
 priorityQueue.enqueue('migraine', 2);
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.dequeue());
