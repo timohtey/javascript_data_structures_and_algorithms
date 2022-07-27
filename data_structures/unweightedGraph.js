@@ -1,4 +1,4 @@
-class Graph {
+class UnweightedGraph {
   constructor() {
     this.adjacenyList = {};
   }
@@ -145,7 +145,7 @@ class Graph {
   }
 }
 
-const graph = new Graph();
+const graph = new UnweightedGraph();
 graph.addVertex('Tokyo');
 graph.addVertex('Manila');
 graph.addVertex('Jeddah');
