@@ -59,7 +59,7 @@ class PriorityQueue {
       swapIndex = null;
       element = this.values[index];
       let leftChildIndex = 2 * index + 1;
-      let rightChildIndex = 2 * index + 1;
+      let rightChildIndex = 2 * index + 2;
       let leftChild =
         leftChildIndex < length ? this.values[leftChildIndex] : null;
       let rightChild =
@@ -97,7 +97,11 @@ const priorityQueue = new PriorityQueue();
 priorityQueue.enqueue('scratch  wound', 5);
 priorityQueue.enqueue('sorethroat', 3);
 priorityQueue.enqueue('fracture', 1);
+priorityQueue.enqueue('migraine2', 6);
 priorityQueue.enqueue('cough', 4);
 priorityQueue.enqueue('migraine', 2);
 console.log(priorityQueue.dequeue());
-console.log(priorityQueue.values);
+console.log(priorityQueue.dequeue());
+console.log(priorityQueue.dequeue());
+console.log(priorityQueue.dequeue());
+console.log(priorityQueue.dequeue());
