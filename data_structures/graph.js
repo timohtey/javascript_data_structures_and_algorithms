@@ -43,13 +43,67 @@ class Graph {
 
     delete this.adjacenyList[vertex];
   }
+
+  dfsRecursive(start) {
+    const adjacenyList = this.adjacenyList;
+    const visited = {};
+    const results = [];
+
+    function dfsHelper(vertex) {
+      if (adjacenyList[vertex].length === 0) {
+        return;
+      }
+
+      results.push(vertex);
+      visited[vertex] = true;
+
+      for (const edge of adjacenyList[vertex]) {
+        if (!visited[edge]) {
+          dfsHelper(edge);
+        }
+      }
+    }
+
+    dfsHelper(start);
+    return results;
+  }
+
+  dfsIterative(start) {
+    const visited = {};
+    const stack = [];
+    const results = [];
+    stack.push(start);
+
+    while (stack.length > 0) {
+      const vertex = stack.pop();
+
+      if (!visited[vertex]) {
+        results.push(vertex);
+        visited[vertex] = true;
+
+        for (const edge of this.adjacenyList[vertex]) {
+          if (!visited[edge]) {
+            stack.push(edge);
+          }
+        }
+      }
+    }
+
+    return results;
+  }
 }
 
 const graph = new Graph();
 graph.addVertex('Tokyo');
 graph.addVertex('Manila');
 graph.addVertex('Jeddah');
+graph.addVertex('Paris');
+graph.addVertex('Dallas');
+graph.addVertex('Cairo');
 graph.addEdge('Manila', 'Tokyo');
 graph.addEdge('Manila', 'Jeddah');
-graph.removeVertex('Manila');
-console.log(graph.adjacenyList);
+graph.addEdge('Tokyo', 'Paris');
+graph.addEdge('Tokyo', 'Dallas');
+graph.addEdge('Tokyo', 'Cairo');
+console.log(graph.dfsRecursive('Manila'));
+console.log(graph.dfsIterative('Manila'));
