@@ -112,6 +112,37 @@ class Graph {
 
     return results;
   }
+
+  bfsRecursive(start) {
+    const visited = {};
+    const queue = [];
+    const results = [];
+    const adjacenyList = this.adjacenyList;
+
+    queue.push(start);
+
+    function bfsRecursiveHelper() {
+      if (queue.length === 0) {
+        return;
+      }
+
+      const vertex = queue.shift();
+      results.push(vertex);
+      visited[vertex] = true;
+
+      for (const edge of adjacenyList[vertex]) {
+        if (!visited[edge]) {
+          queue.push(edge);
+        }
+      }
+
+      bfsRecursiveHelper();
+    }
+
+    bfsRecursiveHelper();
+
+    return results;
+  }
 }
 
 const graph = new Graph();
@@ -131,3 +162,4 @@ graph.addEdge('Dallas', 'Riyadh');
 console.log(graph.dfsRecursive('Manila'));
 console.log(graph.dfsIterative('Manila'));
 console.log(graph.bfsIterative('Manila'));
+console.log(graph.bfsRecursive('Manila'));
